@@ -14,15 +14,23 @@
     if (gate.parentNode) gate.parentNode.removeChild(gate);
   }
 
-  // Deep links skip the threshold — someone arriving at /#atelier asked for
-  // a section, not the front door. One crossing per browser session.
+  // Everyone crosses the threshold, however they arrived. A deep link is
+  // remembered and honoured once the doors are open, not used to skip them.
+  var target = "";
+  try {
+    target = decodeURIComponent(location.hash.slice(1));
+  } catch (e) {
+    target = location.hash.slice(1);
+  }
+
+  // One crossing per browser session.
   var seen = false;
   try {
     seen = sessionStorage.getItem("muso-entered") === "1";
   } catch (e) {
     seen = false; // private mode or blocked storage: just show it
   }
-  if (location.hash || seen) {
+  if (seen) {
     drop();
     return;
   }
@@ -31,11 +39,16 @@
   // visitor without JavaScript is never shut out of the site.
   root.classList.add("gated");
 
-  // A reload restores the previous scroll position, which would put the
-  // visitor mid-page the instant the doors open. Crossing the threshold
-  // should always arrive at the hero.
+  // Two things try to move the page out from under the closed doors: a reload
+  // restoring the old scroll position, and the browser jumping to a URL
+  // fragment once it parses that element. Hold the top until the doors open.
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  window.scrollTo(0, 0);
+  function pin() {
+    if (root.classList.contains("gated")) window.scrollTo(0, 0);
+  }
+  pin();
+  document.addEventListener("DOMContentLoaded", pin);
+  window.addEventListener("load", pin);
 
   var btn = document.getElementById("gateEnter");
   var opened = false;
@@ -54,11 +67,13 @@
     function finish() {
       drop();
       root.classList.remove("gated"); // releases the scroll lock
-      var h1 = document.querySelector(".h1");
-      if (h1) {
-        h1.setAttribute("tabindex", "-1");
-        h1.focus({ preventScroll: true });
-      }
+
+      // Now honour the deep link the visitor arrived with; otherwise the hero.
+      var dest = (target && document.getElementById(target)) || document.querySelector(".h1");
+      if (!dest) return;
+      if (dest.id) dest.scrollIntoView();
+      dest.setAttribute("tabindex", "-1");
+      dest.focus({ preventScroll: true });
     }
 
     // transitionend is the real signal; the timer covers reduced-motion,

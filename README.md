@@ -40,11 +40,16 @@ The site opens on a shoji screen (障子) that slides apart when you click it �
 kumiko lattice over washi, wooden kamachi frames, recessed hikite finger pulls,
 and light from the room beyond growing as the doors part.
 
-It tries not to be an obstacle. Deep links (`/#atelier`) skip the threshold
-entirely, it is crossed once per browser session, and it is `display:none` in
-CSS until `gate.js` raises it — so a visitor without JavaScript is never shut
-out of the site. On the keyboard, focus opens on the door, Enter/Space/Escape
-crosses it, and Tab is held so focus cannot wander behind the screen.
+Everyone crosses the threshold, however they arrived. A deep link like
+`/#atelier` is remembered rather than used to skip the doors — the page is
+pinned to the top while they are shut (against both a reload restoring the old
+scroll position and the browser jumping to the fragment), and the section is
+scrolled to and focused once they open.
+
+It is crossed once per browser session, and it is `display:none` in CSS until
+`gate.js` raises it — so a visitor without JavaScript is never shut out of the
+site. On the keyboard, focus opens on the door, Enter/Space/Escape crosses it,
+and Tab is held so focus cannot wander behind the screen.
 
 ## Other traditional elements
 
