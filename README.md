@@ -34,6 +34,29 @@ independently. Cursor response runs on damped springs:
 | Cursor at rest 2.6 s | An idle drift takes over, so it never freezes |
 | Touch device | Idle drift runs permanently |
 
+## The entrance
+
+The site opens on a shoji screen (障子) that slides apart when you click it —
+kumiko lattice over washi, wooden kamachi frames, recessed hikite finger pulls,
+and light from the room beyond growing as the doors part.
+
+It tries not to be an obstacle. Deep links (`/#atelier`) skip the threshold
+entirely, it is crossed once per browser session, and it is `display:none` in
+CSS until `gate.js` raises it — so a visitor without JavaScript is never shut
+out of the site. On the keyboard, focus opens on the door, Enter/Space/Escape
+crosses it, and Tab is held so focus cannot wander behind the screen.
+
+## Other traditional elements
+
+Placed where they carry meaning rather than as decoration:
+
+| Motif | Where | Why there |
+|---|---|---|
+| **Seigaiha** 青海波 | Aizome section | Literally "blue sea waves" — indigo |
+| **Kumiko** 組子 | Section dividers | Echoes the joinery of the entrance |
+| **Mon** 家紋 | Gate, nav, footer | A kasa over the horizon — the house crest |
+| **Kanji numerals** 一二三四 | Atelier sequence, menu | The steps are an ordered sequence |
+
 ## Other things worth a look
 
 - **Day / night (昼 / 夜)** is not a dark-mode afterthought. Switching relights
@@ -64,7 +87,8 @@ loading on `file://`.
 ```
 index.html              markup only
 assets/
-  css/muso.css          tokens, layout, both themes
+  css/muso.css          tokens, layout, both themes, traditional motifs
+  js/gate.js            the shoji entrance — loads first, ahead of three.js
   js/muso.js            theme, nav, reveals, and the WebGL rōnin
   img/                  photography (see credits)
   favicon.svg           the kasa brim eclipsing the moon
