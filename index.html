@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MUSŌ 無双 — Collection Ⅳ</title>
+<meta name="description" content="Front page for a fictional Kyoto indigo clothing house. Built for fun, with a cursor-reactive WebGL ronin.">
+<meta name="theme-color" content="#C8BFAC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101619" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="MUSŌ 無双 — Collection Ⅳ">
+<meta property="og:description" content="A fictional Kyoto indigo clothing house, with a cursor-reactive WebGL ronin on the front page.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..700&family=Shippori+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/muso.css">
+</head>
+<body>
+<div class="vig" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="pill">
+    <a class="brand" href="#top">MUSŌ <span class="jp">無双</span></a>
+    <nav class="navlinks">
+      <a href="#collection">Collection</a>
+      <a href="#aizome">Aizome</a>
+      <a href="#atelier">Atelier</a>
+      <a href="#stockists">Stockists</a>
+    </nav>
+    <span class="navsep"></span>
+    <div class="tgl" role="group" aria-label="Day or night palette">
+      <span class="knob" aria-hidden="true"></span>
+      <button id="tDay" aria-pressed="true" title="昼 — day">昼</button>
+      <button id="tNight" aria-pressed="false" title="夜 — night">夜</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
+  <nav class="sheetnav">
+    <a href="#collection"><span class="idx">01</span>Collection</a>
+    <a href="#aizome"><span class="idx">02</span>Aizome</a>
+    <a href="#atelier"><span class="idx">03</span>Atelier</a>
+    <a href="#stockists"><span class="idx">04</span>Stockists</a>
+  </nav>
+  <div class="sheetfoot">
+    <span class="label">Kyoto · Nishijin</span>
+    <span class="label">Est. 2011</span>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<main id="top">
+<section class="hero wrap">
+  <div class="herogrid">
+    <div class="heroL">
+      <span class="eyebrow rise d1"><span class="dot"></span>Collection Ⅳ <span class="jp">浪人</span></span>
+      <h1 class="display h1 rise d2">Nothing<br><em>to defend.</em></h1>
+      <p class="lede rise d3">Garments cut for the long road. Natural indigo, hand-run sashiko, and cloth that earns its shape over years — never over a season.</p>
+      <div class="heroactions rise d4">
+        <a class="cta" href="#collection">View Collection Ⅳ
+          <span class="knobb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a class="cta ghost" href="#atelier">The Atelier
+          <span class="knobb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+      <div class="herometa rise d5">
+        <div><span class="label">Dye</span><b class="tnum">60 dips</b></div>
+        <div><span class="label">Stitch pitch</span><b class="tnum">4 mm</b></div>
+        <div><span class="label">Pieces</span><b class="tnum">11</b></div>
+        <div><span class="label">Atelier</span><b>Kyoto</b></div>
+      </div>
+    </div>
+
+    <div class="stage rise d3">
+      <div class="tray-o">
+        <div class="core" id="stageCore">
+          <!-- static poster: the page is never empty at rest -->
+          <svg class="poster" id="poster" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice" aria-label="A seated rōnin beneath a full moon, in a straw kasa hat with a sword across the lap">
+            <circle cx="252" cy="212" r="146" fill="var(--disc)"/>
+            <rect x="0" y="502" width="500" height="15" fill="var(--fg-3)" opacity=".55"/>
+            <path d="M250 300 C 236 372 226 440 210 566 L 300 566 C 288 440 280 372 268 300 Z" fill="var(--fg)" opacity=".92"/>
+            <path d="M176 292 C 150 356 140 436 118 516 L 386 516 C 364 436 352 356 328 292 C 300 322 202 322 176 292 Z" fill="var(--fg)"/>
+            <path d="M96 404 L 408 448" stroke="var(--fg)" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M62 398 L 104 406" stroke="var(--fg)" stroke-width="13" fill="none" stroke-linecap="round" opacity=".8"/>
+            <ellipse cx="252" cy="272" rx="52" ry="34" fill="var(--fg)"/>
+            <path d="M252 146 C 252 146 336 190 452 296 C 380 324 124 324 52 296 C 168 190 252 146 252 146 Z" fill="var(--fg-2)"/>
+            <path d="M52 296 C 124 324 380 324 452 296 C 380 312 124 312 52 296 Z" fill="var(--fg)" opacity=".5"/>
+          </svg>
+          <canvas id="gl"></canvas>
+        </div>
+      </div>
+      <div class="stagefoot">
+        <span class="hint" id="hint"><span class="ring"></span>Move your cursor — 視線が追う</span>
+        <span class="label">Study Ⅳ · Rōnin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MANIFESTO ================= -->
+<section class="sec wrap">
+  <div class="manif">
+    <span class="vrail" data-reveal>風は形を持たぬが、布はそれを覚えている</span>
+    <div data-reveal>
+      <p class="big">A masterless garment answers to the wearer, not to the season.</p>
+      <div class="sig">
+        <span class="seal" aria-hidden="true">無双</span>
+        <span class="label">Ise Tanaka — Founder, Nishijin</span>
+      </div>
+    </div>
+    <div class="body" data-reveal>
+      <p>We began in 2011 with four indigo vats sunk into the floor of a Nishijin weaver's house and a stubborn refusal to shorten anything. The vats are still there. They are fed wheat bran and lye on a schedule, and they are, in the working sense of the word, alive.</p>
+      <p>Every piece leaves the atelier under-finished on purpose. The indigo will lighten at the elbows before it lightens anywhere else. The sashiko will pucker, then settle. Ten years in, the cloth will be a record of where you put your hands.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AIZOME ================= -->
+<section class="sec wrap" id="aizome">
+  <div class="sechead">
+    <div class="l">
+      <span class="eyebrow" data-reveal><span class="dot"></span>Aizome <span class="jp">藍染</span></span>
+      <h2 class="display h2" data-reveal>Depth is<br>a count.</h2>
+    </div>
+    <p class="lede" data-reveal>Indigo does not dissolve in water — it is reduced in a fermenting vat, then oxidised in open air. Colour is built one immersion at a time. Each traditional name below is a fixed number of dips, not a swatch.</p>
+  </div>
+  <figure class="band tray-o" data-reveal>
+    <div class="core"><img src="assets/img/indigo-vats.jpg" alt="A dyer at work in a narrow aisle between sunken vats, their rims crusted with dried indigo" loading="lazy" decoding="async"></div>
+    <figcaption>
+      <span class="label">Vats 01–04 · held at 24 °C · fed 06:00 daily</span>
+      <span class="label">Nishijin, Kyoto</span>
+    </figcaption>
+  </figure>
+  <div class="ladder" data-reveal>
+    <div class="rung pale" style="background:#C7D8DE"><span class="dips">01</span><span class="jp">甕覗</span><span class="ro">Kamenozoki</span><span class="hex">#C7D8DE</span></div>
+    <div class="rung pale" style="background:#8FB4C0"><span class="dips">04</span><span class="jp">浅葱</span><span class="ro">Asagi</span><span class="hex">#8FB4C0</span></div>
+    <div class="rung" style="background:#56859B"><span class="dips">10</span><span class="jp">縹</span><span class="ro">Hanada</span><span class="hex">#56859B</span></div>
+    <div class="rung" style="background:#2E5E77"><span class="dips">22</span><span class="jp">藍</span><span class="ro">Ai</span><span class="hex">#2E5E77</span></div>
+    <div class="rung" style="background:#1C3E55"><span class="dips">40</span><span class="jp">紺</span><span class="ro">Kon</span><span class="hex">#1C3E55</span></div>
+    <div class="rung" style="background:#14232F"><span class="dips">60</span><span class="jp">褐色</span><span class="ro">Kachi-iro</span><span class="hex">#14232F</span></div>
+  </div>
+</section>
+
+<!-- ================= COLLECTION ================= -->
+<section class="sec wrap" id="collection">
+  <div class="sechead">
+    <div class="l">
+      <span class="eyebrow" data-reveal><span class="dot"></span>Collection Ⅳ <span class="jp">四番</span></span>
+      <h2 class="display h2" data-reveal>Eleven pieces.<br>Four shown.</h2>
+    </div>
+    <p class="lede" data-reveal>Drawn as the atelier drafts them — technical flats, at scale, before a single metre is cut. Full specification travels with each garment.</p>
+  </div>
+
+  <div class="colgrid">
+    <article class="piece tray-o" data-reveal>
+      <div class="core">
+        <button class="media" type="button" aria-pressed="false" aria-label="Kasa Shoulder Coat — show the technical flat">
+          <span class="shot"><img src="assets/img/kasa-shoulder-coat.jpg" alt="A kimono-cut coat laid flat, wide sleeves open, a checkered panel across one side" loading="lazy" decoding="async"></span>
+          <span class="mediatag">Flat</span>
+          <span class="flat">
+          <svg class="flatart" viewBox="0 0 240 280" role="img" aria-label="Technical flat: Kasa shoulder coat with wide sleeves and wrap front">
+            <path class="fillcloth" d="M74 34 L120 50 L166 34 L196 46 L232 152 L200 168 L186 136 L186 262 L54 262 L54 136 L40 168 L8 152 L44 46 Z"/>
+            <path d="M74 34 L120 50 L166 34 L196 46 L232 152 L200 168 L186 136 L186 262 L54 262 L54 136 L40 168 L8 152 L44 46 Z"/>
+            <path d="M74 34 L120 92 L166 34"/>
+            <path d="M120 92 L120 262"/>
+            <path class="thin" d="M112 96 L112 258"/>
+            <path class="dash" d="M54 136 L186 136"/>
+            <path class="thin" d="M186 200 L54 200"/>
+            <circle class="thin" cx="106" cy="126" r="4"/><circle class="thin" cx="106" cy="164" r="4"/><circle class="thin" cx="106" cy="202" r="4"/>
+          </svg>
+          </span>
+        </button>
+        <div class="piecehead"><h3 class="display h3">Kasa Shoulder Coat</h3><span class="code">MSŌ&nbsp;401</span></div>
+        <dl class="spec">
+          <div><dt>Cloth</dt><dd>14 oz kasuri cotton</dd></div>
+          <div><dt>Dye</dt><dd>60-dip kachi-iro</dd></div>
+          <div><dt>Stitch</dt><dd>4 mm sashiko, hand-run</dd></div>
+          <div><dt>Weight</dt><dd>1 840 g (size 3)</dd></div>
+        </dl>
+        <div class="priceline"><span class="price">¥286,000</span><span class="label">Made to order · 12 wks</span></div>
+      </div>
+    </article>
+
+    <article class="piece tray-o" data-reveal>
+      <div class="core">
+        <button class="media" type="button" aria-pressed="false" aria-label="Noragi Field Shirt — show the technical flat">
+          <span class="shot"><img src="assets/img/noragi-field-shirt.jpg" alt="A blue workwear shirt on a garment rack, seen from the back, a paper archive label pinned to it" loading="lazy" decoding="async"></span>
+          <span class="mediatag">Flat</span>
+          <span class="flat">
+          <svg class="flatart" viewBox="0 0 240 280" role="img" aria-label="Technical flat: Noragi field shirt with two chest pockets">
+            <path class="fillcloth" d="M80 36 L120 50 L160 36 L188 46 L216 132 L192 144 L182 118 L182 250 L58 250 L58 118 L48 144 L24 132 L52 46 Z"/>
+            <path d="M80 36 L120 50 L160 36 L188 46 L216 132 L192 144 L182 118 L182 250 L58 250 L58 118 L48 144 L24 132 L52 46 Z"/>
+            <path d="M100 38 L120 76 L140 38"/>
+            <path d="M120 76 L120 250"/>
+            <path class="thin" d="M110 80 L110 246"/>
+            <rect class="thin" x="76" y="102" width="34" height="40" rx="2"/>
+            <rect class="thin" x="130" y="102" width="34" height="40" rx="2"/>
+            <path class="dash" d="M24 132 L48 144 M216 132 L192 144"/>
+            <circle class="thin" cx="115" cy="112" r="3.4"/><circle class="thin" cx="115" cy="158" r="3.4"/><circle class="thin" cx="115" cy="204" r="3.4"/>
+          </svg>
+          </span>
+        </button>
+        <div class="piecehead"><h3 class="display h3">Noragi Field Shirt</h3><span class="code">MSŌ&nbsp;412</span></div>
+        <dl class="spec">
+          <div><dt>Cloth</dt><dd>9.5 oz slub cotton</dd></div>
+          <div><dt>Dye</dt><dd>22-dip ai</dd></div>
+          <div><dt>Closure</dt><dd>Bone toggle ×3</dd></div>
+          <div><dt>Weight</dt><dd>640 g (size 3)</dd></div>
+        </dl>
+        <div class="priceline"><span class="price">¥128,000</span><span class="label">In stock · 4 sizes</span></div>
+      </div>
+    </article>
+
+    <article class="piece tray-o" data-reveal>
+      <div class="core">
+        <button class="media" type="button" aria-pressed="false" aria-label="Boro Patch Trouser — show the technical flat">
+          <span class="shot"><img src="assets/img/boro-patch-trouser.jpg" alt="Dark indigo trousers hanging from a wooden hanger against a pale wall" loading="lazy" decoding="async"></span>
+          <span class="mediatag">Flat</span>
+          <span class="flat">
+          <svg class="flatart" viewBox="0 0 240 280" role="img" aria-label="Technical flat: Boro patch trouser with visible repair panels">
+            <path class="fillcloth" d="M60 26 L180 26 L188 68 L166 262 L128 262 L120 132 L112 262 L74 262 L52 68 Z"/>
+            <path d="M60 26 L180 26 L188 68 L166 262 L128 262 L120 132 L112 262 L74 262 L52 68 Z"/>
+            <path d="M56 52 L184 52"/>
+            <path class="thin" d="M120 26 L120 132"/>
+            <path class="thin" d="M128 52 L128 96"/>
+            <rect class="dash" x="66" y="104" width="42" height="38"/>
+            <rect class="dash" x="136" y="150" width="38" height="44"/>
+            <rect class="dash" x="80" y="186" width="30" height="28"/>
+            <path class="thin" d="M62 78 L96 78 L96 100 L64 100"/>
+            <path class="thin" d="M178 78 L144 78 L144 100 L176 100"/>
+          </svg>
+          </span>
+        </button>
+        <div class="piecehead"><h3 class="display h3">Boro Patch Trouser</h3><span class="code">MSŌ&nbsp;428</span></div>
+        <dl class="spec">
+          <div><dt>Cloth</dt><dd>Reclaimed 1930s noragi</dd></div>
+          <div><dt>Dye</dt><dd>40-dip kon, overdyed</dd></div>
+          <div><dt>Patches</dt><dd>6–11, none alike</dd></div>
+          <div><dt>Weight</dt><dd>820 g (size 3)</dd></div>
+        </dl>
+        <div class="priceline"><span class="price">¥164,000</span><span class="label">One of one · 9 made</span></div>
+      </div>
+    </article>
+
+    <article class="piece tray-o" data-reveal>
+      <div class="core">
+        <button class="media" type="button" aria-pressed="false" aria-label="Kumihimo Obi Belt — show the technical flat">
+          <span class="shot"><img src="assets/img/kumihimo-obi-belt.jpg" alt="A length of natural-fibre cord coiled into a flat spiral on white" loading="lazy" decoding="async"></span>
+          <span class="mediatag">Flat</span>
+          <span class="flat">
+          <svg class="flatart" viewBox="0 0 240 280" role="img" aria-label="Technical flat: Kumihimo obi wrap belt, braided silk cord">
+            <path class="fillcloth" d="M16 108 L224 108 L224 172 L16 172 Z"/>
+            <path d="M16 108 L224 108 L224 172 L16 172 Z"/>
+            <path class="thin" d="M16 124 L224 124 M16 140 L224 140 M16 156 L224 156"/>
+            <path d="M96 92 C 96 92 120 76 144 92 C 168 108 156 172 120 188 C 84 204 72 140 96 92 Z"/>
+            <path class="thin" d="M108 100 C 100 130 104 164 120 180"/>
+            <path class="thin" d="M132 100 C 140 130 136 164 120 180"/>
+            <path class="dash" d="M120 188 L120 244 M104 190 L96 244 M136 190 L144 244"/>
+          </svg>
+          </span>
+        </button>
+        <div class="piecehead"><h3 class="display h3">Kumihimo Obi Belt</h3><span class="code">MSŌ&nbsp;455</span></div>
+        <dl class="spec">
+          <div><dt>Cord</dt><dd>3.2 m braided silk</dd></div>
+          <div><dt>Silk</dt><dd>22 momme, 16 strand</dd></div>
+          <div><dt>Braid</dt><dd>Maru-genji, by hand</dd></div>
+          <div><dt>Weight</dt><dd>190 g</dd></div>
+        </dl>
+        <div class="priceline"><span class="price">¥62,000</span><span class="label">In stock · one length</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= ATELIER ================= -->
+<section class="sec wrap" id="atelier">
+  <div class="sechead">
+    <div class="l">
+      <span class="eyebrow" data-reveal><span class="dot"></span>Atelier <span class="jp">工程</span></span>
+      <h2 class="display h2" data-reveal>Ninety-one days,<br>in order.</h2>
+    </div>
+    <p class="lede" data-reveal>The sequence cannot be reordered or run in parallel — the vat has to be alive before it can take cloth, and the cloth has to rest before it can be cut.</p>
+  </div>
+  <div class="steps">
+    <div class="step" data-reveal>
+      <div class="stg"><b>Ⅰ</b><span class="jp">藍建</span></div>
+      <h3 class="display h3">Aidate</h3>
+      <p>Composted sukumo, wood-ash lye, wheat bran and sake are fed to the vat until it froths. Temperature is held by hand, not thermostat.</p>
+      <span class="dur">14 days</span>
+    </div>
+    <div class="step" data-reveal>
+      <div class="stg"><b>Ⅱ</b><span class="jp">染</span></div>
+      <h3 class="display h3">Some</h3>
+      <p>Sixty immersions. Each one is followed by full oxidation in open air, where the cloth turns from yellow-green to blue in about ninety seconds.</p>
+      <span class="dur">21 days</span>
+    </div>
+    <div class="step" data-reveal>
+      <div class="stg"><b>Ⅲ</b><span class="jp">刺子</span></div>
+      <h3 class="display h3">Sashiko</h3>
+      <p>Running stitch at a 4 mm pitch, laid in by two hands across the stress panels — shoulder yoke, elbow, seat. No machine can hold the pitch loose enough.</p>
+      <span class="dur">46 hours</span>
+    </div>
+    <div class="step" data-reveal>
+      <div class="stg"><b>Ⅳ</b><span class="jp">仕上</span></div>
+      <h3 class="display h3">Shiage</h3>
+      <p>Washed in soft water, weighted, and left on the bolt in the dark. Indigo keeps moving for weeks; cutting early guarantees a garment that twists.</p>
+      <span class="dur">30 days</span>
+    </div>
+  </div>
+  <figure class="band tray-o" data-reveal style="margin-top:clamp(30px,3.6vw,54px);margin-bottom:0">
+    <div class="core"><img src="assets/img/boro-repair-coat.jpg" alt="A panelled, many-times-repaired coat hanging on a line in front of a weathered stone wall" loading="lazy" decoding="async"></div>
+    <figcaption>
+      <span class="label">Repair archive · coat returned 2014, re-panelled four times</span>
+      <span class="label">Boro <span style="font-family:var(--mincho)">襤褸</span></span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section class="sec wrap" id="stockists">
+  <div class="closing">
+    <div>
+      <span class="eyebrow" data-reveal><span class="dot"></span>Stockists <span class="jp">取扱</span></span>
+      <h2 class="display h2" data-reveal style="margin-top:20px">Five rooms<br>hold it.</h2>
+      <p class="lede" data-reveal style="margin-top:24px">Collection Ⅳ is not sold online. Each room keeps its own size run and its own indigo depth — ask for the vat number before you order.</p>
+      <div style="margin-top:32px" data-reveal>
+        <a class="cta" href="#top">Request an appointment
+          <span class="knobb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <div data-reveal>
+      <div class="stk"><span class="city">Kyoto</span><span class="jp">西陣</span><span class="place">Atelier &amp; vats</span></div>
+      <div class="stk"><span class="city">Tokyo</span><span class="jp">中目黒</span><span class="place">By appointment</span></div>
+      <div class="stk"><span class="city">Paris</span><span class="jp">巴里</span><span class="place">Le Marais</span></div>
+      <div class="stk"><span class="city">New York</span><span class="jp">紐育</span><span class="place">Tribeca</span></div>
+      <div class="stk"><span class="city">Seoul</span><span class="jp">漢南</span><span class="place">Hannam-dong</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <div class="footgrid">
+    <div style="display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap">
+      <span class="seal" aria-hidden="true">無双</span>
+      <p class="colophon">MUSŌ 無双 — Nishijin, Kyoto. Established 2011. The seal is cut from boxwood and struck in vermillion on every garment tag. Design comp — photography licensed via Unsplash.</p>
+    </div>
+    <div class="footcols">
+      <div class="footcol"><span class="label">Collection</span><a href="#collection">Ⅳ Rōnin</a><a href="#aizome">Aizome</a><a href="#atelier">Atelier</a></div>
+      <div class="footcol"><span class="label">Care</span><a href="#top">Indigo washing</a><a href="#top">Repair &amp; boro</a><a href="#top">Sizing</a></div>
+      <div class="footcol"><span class="label">House</span><a href="#stockists">Stockists</a><a href="#top">Contact</a><a href="#top">Terms</a></div>
+    </div>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/js/muso.js"></script>
+</body>
+</html>

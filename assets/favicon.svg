@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MUSO">
+  <rect width="64" height="64" rx="13" fill="#22343C"/>
+  <circle cx="32" cy="27" r="15" fill="#F2EDE0"/>
+  <path d="M32 15C32 15 45 23 55 40C43 45 21 45 9 40C19 23 32 15 32 15Z" fill="#22343C"/>
+  <path d="M9 40C21 45 43 45 55 40C43 42.6 21 42.6 9 40Z" fill="#B0392B"/>
+</svg>

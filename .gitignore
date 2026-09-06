@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# vercel
+.vercel
+
+# editors
+.vscode/
+.idea/
+
+# os cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# logs
+*.log
+npm-debug.log*
