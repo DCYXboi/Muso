@@ -9,7 +9,7 @@ and none of it is affiliated with any company. The prices, the vat temperatures
 and the stockist cities are invented. It exists because the idea of a masterless
 swordsman selling coats was too good to leave alone.
 
-> **Live:** _add your Vercel URL here after the first deploy_
+> Live:https://muso-eta.vercel.app/
 
 ---
 
