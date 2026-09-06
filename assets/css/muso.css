@@ -388,3 +388,196 @@ footer{padding-block:clamp(50px,5.6vw,82px);border-top:1px solid var(--hairline-
   .js [data-reveal]{opacity:1;transform:none;filter:none}
   .rise{animation:none}
 }
+
+/* ==========================================================
+   TRADITIONAL ELEMENTS
+   Shoji entrance gate, kumiko lattice, seigaiha, the house mon.
+   ========================================================== */
+
+:root{
+  --washi:      #EFE7D4;
+  --washi-2:    #E5DAC0;
+  --washi-glow: rgba(255,247,226,.95);
+  --wood:       #6A5335;
+  --wood-2:     #4B3922;
+  --kumiko:     rgba(96,74,46,.52);
+  --hikite:     #3F3120;
+  --pattern-op: .085;
+
+  --gate-e:  cubic-bezier(.72,.02,.24,1);
+  --kamachi: clamp(9px,1.4vw,18px);
+  --cell-w:  clamp(62px,8.6vw,124px);
+  --cell-h:  calc(var(--cell-w) * 1.24);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --washi:      #D8C9A4;
+    --washi-2:    #C9B892;
+    --washi-glow: rgba(236,221,184,.55);
+    --wood:       #2A2017;
+    --wood-2:     #1A130D;
+    --kumiko:     rgba(26,19,13,.55);
+    --hikite:     #120D08;
+    --pattern-op: .13;
+  }
+}
+:root[data-theme="dark"]{
+  --washi:      #D8C9A4;
+  --washi-2:    #C9B892;
+  --washi-glow: rgba(236,221,184,.55);
+  --wood:       #2A2017;
+  --wood-2:     #1A130D;
+  --kumiko:     rgba(26,19,13,.55);
+  --hikite:     #120D08;
+  --pattern-op: .13;
+}
+
+/* ---------- the house mon 家紋 ---------- */
+.mon{display:block;width:1em;height:1em;color:currentColor;flex:none}
+.brand .mon{width:19px;height:19px;color:var(--fg-2)}
+.footmon{width:38px;height:38px;color:var(--fg-3);opacity:.85}
+
+/* ---------- shoji entrance gate 障子 ---------- */
+/* Hidden by default so a no-JS visitor is never locked out;
+   assets/js/gate.js decides whether to raise it. */
+.gate{display:none}
+html.gated .gate,
+.gate.opening{
+  display:grid;
+  position:fixed;inset:0;z-index:90;
+  grid-template-columns:1fr 1fr;
+  overflow:hidden;
+  background:var(--bg);
+}
+html.gated body{overflow:hidden}
+
+/* light in the room beyond, growing as the doors part */
+.gate__glow{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(58% 52% at 50% 46%, var(--washi-glow) 0%, transparent 72%);
+  opacity:0;transition:opacity 1.2s var(--e);
+}
+.gate.opening .gate__glow{opacity:1}
+
+.gate__panel{
+  position:relative;z-index:1;
+  background:linear-gradient(160deg, var(--washi) 0%, var(--washi-2) 100%);
+  border:var(--kamachi) solid var(--wood);
+  transition:transform 1.5s var(--gate-e);
+  will-change:transform;
+}
+/* kumiko: the lattice of thin mullions behind the paper */
+.gate__panel::before{
+  content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(90deg, var(--kumiko) 0 2px, transparent 2px var(--cell-w)),
+    repeating-linear-gradient(0deg,  var(--kumiko) 0 2px, transparent 2px var(--cell-h));
+}
+/* washi fibre — long, sparse, only just visible */
+.gate__panel::after{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background:
+    repeating-linear-gradient(92deg, rgba(120,96,60,.07) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(2deg,  rgba(120,96,60,.05) 0 1px, transparent 1px 11px);
+}
+.gate__panel--l{border-right-width:calc(var(--kamachi) * .6);box-shadow:8px 0 26px -14px rgba(0,0,0,.5)}
+.gate__panel--r{border-left-width:calc(var(--kamachi) * .6)}
+
+/* hikite — the recessed finger pull */
+.gate__pull{
+  position:absolute;top:46%;z-index:2;
+  width:clamp(16px,1.5vw,22px);height:clamp(40px,4.6vw,58px);
+  border-radius:3px;
+  background:linear-gradient(180deg, var(--hikite), color-mix(in srgb, var(--hikite) 70%, transparent));
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.25);
+}
+.gate__panel--l .gate__pull{right:10px}
+.gate__panel--r .gate__pull{left:10px}
+
+/* the plate that carries the crest and the invitation */
+.gate__plate{
+  position:absolute;inset:0;z-index:3;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(16px,2vw,26px);padding:24px;text-align:center;pointer-events:none;
+  background:radial-gradient(ellipse 42% 36% at 50% 47%, var(--washi) 0%, color-mix(in srgb, var(--washi) 64%, transparent) 54%, transparent 78%);
+  transition:opacity .75s var(--e), transform 1.3s var(--e);
+}
+.gate.opening .gate__plate{opacity:0;transform:scale(1.07)}
+.gate__mon{width:clamp(58px,7vw,86px);height:clamp(58px,7vw,86px);color:var(--wood);opacity:.92}
+.gate__word{
+  font-family:var(--display);font-weight:500;
+  font-size:clamp(2.4rem,7vw,4.6rem);line-height:.92;letter-spacing:.02em;
+  color:var(--wood-2);
+}
+.gate__word .jp{display:block;font-family:var(--mincho);font-size:.3em;letter-spacing:.7em;margin-top:.6em;padding-left:.7em}
+.gate__sub{
+  font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+  color:color-mix(in srgb, var(--wood-2) 72%, transparent);
+}
+.gate__enter{
+  pointer-events:auto;margin-top:clamp(6px,1vw,14px);
+  display:inline-flex;align-items:center;gap:14px;
+  padding:13px 15px 13px 26px;border-radius:999px;
+  border:1px solid color-mix(in srgb, var(--wood) 34%, transparent);
+  background:color-mix(in srgb, var(--washi) 55%, transparent);
+  color:var(--wood-2);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  transition:transform .6s var(--e), background-color .6s var(--e), border-color .6s var(--e);
+}
+.gate__enter .k{font-family:var(--mincho);font-size:15px;letter-spacing:0;text-transform:none}
+.gate__enter:hover{transform:translateY(-2px);background:color-mix(in srgb, var(--washi) 85%, transparent);border-color:color-mix(in srgb, var(--wood) 60%, transparent)}
+.gate__enter:active{transform:scale(.98)}
+.gate__hint{
+  position:absolute;bottom:clamp(22px,4vh,44px);left:50%;transform:translateX(-50%);z-index:3;
+  font-family:var(--mincho);font-size:11px;letter-spacing:.5em;padding-left:.5em;
+  color:color-mix(in srgb, var(--wood-2) 74%, transparent);
+  transition:opacity .5s var(--e);
+}
+.gate.opening .gate__hint{opacity:0}
+
+/* the doors part */
+.gate.opening .gate__panel--l{transform:translateX(-101%)}
+.gate.opening .gate__panel--r{transform:translateX(101%);transition-delay:.07s}
+
+@media (max-width:600px){
+  .gate__panel::before{
+    background:
+      repeating-linear-gradient(90deg, var(--kumiko) 0 1.5px, transparent 1.5px var(--cell-w)),
+      repeating-linear-gradient(0deg,  var(--kumiko) 0 1.5px, transparent 1.5px var(--cell-h));
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .gate.opening .gate__panel--l,
+  .gate.opening .gate__panel--r{transform:none;opacity:0}
+  .gate.opening{opacity:0}
+}
+
+/* ---------- seigaiha 青海波 — blue sea waves, under the indigo ---------- */
+#aizome::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  opacity:var(--pattern-op);
+  background-color:var(--fg);
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M-20 20a20 20 0 0 1 40 0M-15 20a15 15 0 0 1 30 0M-10 20a10 10 0 0 1 20 0M-5 20a5 5 0 0 1 10 0'/%3E%3Cpath d='M20 20a20 20 0 0 1 40 0M25 20a15 15 0 0 1 30 0M30 20a10 10 0 0 1 20 0M35 20a5 5 0 0 1 10 0'/%3E%3Cpath d='M0 40a20 20 0 0 1 40 0M5 40a15 15 0 0 1 30 0M10 40a10 10 0 0 1 20 0M15 40a5 5 0 0 1 10 0'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M-20 20a20 20 0 0 1 40 0M-15 20a15 15 0 0 1 30 0M-10 20a10 10 0 0 1 20 0M-5 20a5 5 0 0 1 10 0'/%3E%3Cpath d='M20 20a20 20 0 0 1 40 0M25 20a15 15 0 0 1 30 0M30 20a10 10 0 0 1 20 0M35 20a5 5 0 0 1 10 0'/%3E%3Cpath d='M0 40a20 20 0 0 1 40 0M5 40a15 15 0 0 1 30 0M10 40a10 10 0 0 1 20 0M15 40a5 5 0 0 1 10 0'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-size:44px 44px;mask-size:44px 44px;
+  -webkit-mask-repeat:repeat;mask-repeat:repeat;
+}
+#aizome > *{position:relative;z-index:1}
+
+/* ---------- kumiko divider 組子 ---------- */
+.kumiko{
+  height:24px;width:100%;max-width:var(--maxw);
+  margin-inline:auto;opacity:.22;
+  background-color:var(--fg);
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='24' viewBox='0 0 34 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M0 2h34M0 22h34'/%3E%3Cpath d='M0 22L17 2l17 20'/%3E%3Cpath d='M17 2v20' stroke-width='.8'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='24' viewBox='0 0 34 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M0 2h34M0 22h34'/%3E%3Cpath d='M0 22L17 2l17 20'/%3E%3Cpath d='M17 2v20' stroke-width='.8'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-size:34px 24px;mask-size:34px 24px;
+  -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;
+}
+
+/* ---------- kanji numerals in the atelier sequence ---------- */
+.step .stg b{font-family:var(--mincho);font-size:1.15rem;font-weight:600;letter-spacing:.04em}
+.sheetnav a .idx{font-family:var(--mincho);font-size:13px;letter-spacing:.1em}
+
+@media (max-width:480px){
+  .gate__sub{font-size:9px;letter-spacing:.16em;max-width:26ch;line-height:1.75}
+}

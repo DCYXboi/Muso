@@ -19,13 +19,40 @@
 <link rel="stylesheet" href="assets/css/muso.css">
 </head>
 <body>
+
+<!-- the house mon 家紋 — a kasa over the horizon, twice ringed -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="mon" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width=".85"/>
+    <path d="M32 16C32 16 41.5 24.2 49.5 38C39 42.2 25 42.2 14.5 38C22.5 24.2 32 16 32 16Z" fill="currentColor"/>
+    <circle cx="32" cy="14.4" r="2.1" fill="currentColor"/>
+    <rect x="20" y="45.4" width="24" height="1.7" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- ================= SHOJI ENTRANCE 障子 ================= -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-label="Entrance">
+  <div class="gate__glow" aria-hidden="true"></div>
+  <div class="gate__panel gate__panel--l" aria-hidden="true"><span class="gate__pull"></span></div>
+  <div class="gate__panel gate__panel--r" aria-hidden="true"><span class="gate__pull"></span></div>
+  <div class="gate__plate">
+    <svg class="mon gate__mon" aria-hidden="true"><use href="#mon"/></svg>
+    <p class="gate__word">MUSŌ<span class="jp">無双</span></p>
+    <p class="gate__sub">Collection Ⅳ · Rōnin · Nishijin, Kyoto</p>
+    <button class="gate__enter" id="gateEnter" type="button">Slide to enter <span class="k">引く</span></button>
+  </div>
+  <span class="gate__hint" aria-hidden="true">戸を開ける</span>
+</div>
+<script src="assets/js/gate.js"></script>
+
 <div class="vig" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
   <div class="pill">
-    <a class="brand" href="#top">MUSŌ <span class="jp">無双</span></a>
+    <a class="brand" href="#top"><svg class="mon" aria-hidden="true"><use href="#mon"/></svg>MUSŌ <span class="jp">無双</span></a>
     <nav class="navlinks">
       <a href="#collection">Collection</a>
       <a href="#aizome">Aizome</a>
@@ -44,10 +71,10 @@
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
   <nav class="sheetnav">
-    <a href="#collection"><span class="idx">01</span>Collection</a>
-    <a href="#aizome"><span class="idx">02</span>Aizome</a>
-    <a href="#atelier"><span class="idx">03</span>Atelier</a>
-    <a href="#stockists"><span class="idx">04</span>Stockists</a>
+    <a href="#collection"><span class="idx">一</span>Collection</a>
+    <a href="#aizome"><span class="idx">二</span>Aizome</a>
+    <a href="#atelier"><span class="idx">三</span>Atelier</a>
+    <a href="#stockists"><span class="idx">四</span>Stockists</a>
   </nav>
   <div class="sheetfoot">
     <span class="label">Kyoto · Nishijin</span>
@@ -122,6 +149,8 @@
     </div>
   </div>
 </section>
+
+<div class="wrap"><div class="kumiko" aria-hidden="true"></div></div>
 
 <!-- ================= AIZOME ================= -->
 <section class="sec wrap" id="aizome">
@@ -280,6 +309,8 @@
   </div>
 </section>
 
+<div class="wrap"><div class="kumiko" aria-hidden="true"></div></div>
+
 <!-- ================= ATELIER ================= -->
 <section class="sec wrap" id="atelier">
   <div class="sechead">
@@ -291,25 +322,25 @@
   </div>
   <div class="steps">
     <div class="step" data-reveal>
-      <div class="stg"><b>Ⅰ</b><span class="jp">藍建</span></div>
+      <div class="stg"><b>一</b><span class="jp">藍建</span></div>
       <h3 class="display h3">Aidate</h3>
       <p>Composted sukumo, wood-ash lye, wheat bran and sake are fed to the vat until it froths. Temperature is held by hand, not thermostat.</p>
       <span class="dur">14 days</span>
     </div>
     <div class="step" data-reveal>
-      <div class="stg"><b>Ⅱ</b><span class="jp">染</span></div>
+      <div class="stg"><b>二</b><span class="jp">染</span></div>
       <h3 class="display h3">Some</h3>
       <p>Sixty immersions. Each one is followed by full oxidation in open air, where the cloth turns from yellow-green to blue in about ninety seconds.</p>
       <span class="dur">21 days</span>
     </div>
     <div class="step" data-reveal>
-      <div class="stg"><b>Ⅲ</b><span class="jp">刺子</span></div>
+      <div class="stg"><b>三</b><span class="jp">刺子</span></div>
       <h3 class="display h3">Sashiko</h3>
       <p>Running stitch at a 4 mm pitch, laid in by two hands across the stress panels — shoulder yoke, elbow, seat. No machine can hold the pitch loose enough.</p>
       <span class="dur">46 hours</span>
     </div>
     <div class="step" data-reveal>
-      <div class="stg"><b>Ⅳ</b><span class="jp">仕上</span></div>
+      <div class="stg"><b>四</b><span class="jp">仕上</span></div>
       <h3 class="display h3">Shiage</h3>
       <p>Washed in soft water, weighted, and left on the bolt in the dark. Indigo keeps moving for weeks; cutting early guarantees a garment that twists.</p>
       <span class="dur">30 days</span>
@@ -352,6 +383,7 @@
   <div class="footgrid">
     <div style="display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap">
       <span class="seal" aria-hidden="true">無双</span>
+      <svg class="mon footmon" aria-hidden="true"><use href="#mon"/></svg>
       <p class="colophon">MUSŌ 無双 — Nishijin, Kyoto. Established 2011. The seal is cut from boxwood and struck in vermillion on every garment tag. Design comp — photography licensed via Unsplash.</p>
     </div>
     <div class="footcols">
