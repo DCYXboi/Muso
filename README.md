@@ -46,10 +46,16 @@ pinned to the top while they are shut (against both a reload restoring the old
 scroll position and the browser jumping to the fragment), and the section is
 scrolled to and focused once they open.
 
-It is crossed once per browser session, and it is `display:none` in CSS until
-`gate.js` raises it — so a visitor without JavaScript is never shut out of the
-site. On the keyboard, focus opens on the door, Enter/Space/Escape crosses it,
-and Tab is held so focus cannot wander behind the screen.
+A timestamp records when you were **last on the site**, refreshed whenever the
+page is hidden or unloaded. Come back within five minutes and you walk straight
+in; stay away longer and the doors are shut again. A reload is not leaving, so
+it never re-shows mid-visit — and the gate is never re-raised over a page you
+are already reading. The window is one constant at the top of `gate.js`.
+
+It is `display:none` in CSS until `gate.js` raises it, so a visitor without
+JavaScript is never shut out of the site. On the keyboard, focus opens on the
+door, Enter/Space/Escape crosses it, and Tab is held so focus cannot wander
+behind the screen.
 
 ## Other traditional elements
 
